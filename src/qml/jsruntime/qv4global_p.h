@@ -70,9 +70,9 @@ inline double trunc(double d) { return d > 0 ? floor(d) : ceil(d); }
 
 // White list architectures
 
-#if defined(Q_PROCESSOR_X86)
+#if defined(Q_PROCESSOR_X86) && !defined(__ILP32__)
 #define V4_ENABLE_JIT
-#elif defined(Q_PROCESSOR_X86_64)
+#elif defined(Q_PROCESSOR_X86_64) && !defined(__ILP32__)
 #define V4_ENABLE_JIT
 #elif defined(Q_PROCESSOR_ARM_32)
 

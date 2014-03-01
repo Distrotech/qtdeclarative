@@ -164,6 +164,12 @@
 #if   defined(__x86_64__) \
     || defined(_M_X64)
 #define WTF_CPU_X86_64 1
+
+/* X32 ABI*/
+#if defined(__ILP32__)
+#define WTF_CPU_X32 1
+#endif
+
 #endif
 
 /* CPU(ARM) - ARM, any version*/
@@ -696,7 +702,7 @@
 #endif
 
 #if !defined(WTF_USE_JSVALUE64) && !defined(WTF_USE_JSVALUE32_64)
-#if (CPU(X86_64) && (OS(UNIX) || OS(WINDOWS))) \
+#if (CPU(X86_64) && (OS(UNIX) || OS(WINDOWS)) & !CPU(X32)) \
     || (CPU(IA64) && !CPU(IA64_32)) \
     || CPU(ALPHA) \
     || CPU(SPARC64) \
